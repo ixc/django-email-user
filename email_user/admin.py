@@ -28,4 +28,5 @@ class EmailUserAdmin(DjangoUserAdmin):
         ),
     )
     search_fields = ('email', 'first_name', 'last_name')
+    ordering = ('email',)
 
