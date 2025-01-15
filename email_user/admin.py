@@ -1,6 +1,11 @@
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
-from django.utils.translation import gettext_lazy as _
 from . import forms
+
+try:
+    from django.utils.translation import ugettext_lazy as _
+except ImportError:
+    # Adds support for django 4+/python 3.0
+    from django.utils.translation import gettext_lazy as _
 
 
 class EmailUserAdmin(DjangoUserAdmin):
@@ -29,4 +34,3 @@ class EmailUserAdmin(DjangoUserAdmin):
     )
     search_fields = ('email', 'first_name', 'last_name')
     ordering = ('email',)
-
